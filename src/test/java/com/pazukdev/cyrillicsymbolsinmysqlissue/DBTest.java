@@ -1,17 +1,15 @@
 package com.pazukdev.cyrillicsymbolsinmysqlissue;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.context.junit4.SpringRunner;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * @author Siarhei Sviarkaltsau
  */
-@RunWith(SpringRunner.class)
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class DBTest {
@@ -21,9 +19,8 @@ public class DBTest {
 
     @Test
     public void checkUserName() {
-        final String expectedName = DataLoader.USER_NAME;
         final User user = userRepository.getOne(1L);
-        Assert.assertEquals(expectedName, user.getName());
+        assertThat(user.getName()).isEqualTo(DataLoader.USER_NAME);
     }
 
 }
