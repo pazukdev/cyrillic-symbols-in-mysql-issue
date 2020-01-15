@@ -1,7 +1,9 @@
 package com.pazukdev.cyrillicsymbolsinmysqlissue;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.DefaultApplicationArguments;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
@@ -22,5 +24,4 @@ public class DBTest {
         final User user = userRepository.getOne(1L);
         assertThat(user.getName()).isEqualTo(DataLoader.USER_NAME);
     }
-
 }
