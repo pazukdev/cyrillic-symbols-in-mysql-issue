@@ -12,16 +12,20 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class DataLoader implements ApplicationRunner {
 
+    public static final String USER_NAME = "абв";
+
     private final UserRepository userRepository;
 
     @Override
     public void run(ApplicationArguments args) {
-        createUser();
+        if (userRepository.findAll().isEmpty()) {
+            createUser();
+        }
     }
 
     private void createUser() {
         final User user = new User();
-        user.setName("абв");
+        user.setName(USER_NAME);
         userRepository.save(user);
     }
 
